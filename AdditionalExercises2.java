@@ -240,15 +240,16 @@ public class AdditionalExercises2 {
         System.out.println();
 
         System.out.println("reverse method: ");
-        map1.put("42", "Marty");
-        map1.put("81", "Sue");
-        map1.put("17", "Ed");
-        map1.put("31", "Dave");
-        map1.put("56", "Ed");
-        map1.put("3", "Marty");
-        map1.put("29", "Ed");
+        Map<Integer, String> map5 = new HashMap<Integer, String>();
+        map5.put(42, "Marty");
+        map5.put(81, "Sue");
+        map5.put(17, "Ed");
+        map5.put(31, "Dave");
+        map5.put(56, "Ed");
+        map5.put(3, "Marty");
+        map5.put(29, "Ed");
         System.out.println("The map before reversing = " + map1);
-        System.out.println("The map after reversing = " + reverse(map1));
+        System.out.println("The map after reversing = " + reverse(map5));
         map1.clear();
         System.out.println();
 
@@ -477,24 +478,19 @@ public class AdditionalExercises2 {
         return false;
     }
 
-    public static Map<String, String> reverse(Map<String, String> m1) {
-        Map<String, String> m2 = new HashMap<String, String>();// construct the reverse map
-        Set<String> keys = m1.keySet();// put the keys into the set
-        Collection<String> values = m1.values();// put the values into the collection
-        Iterator<String> itrValues = values.iterator(); // iterate over the set of keys of m1
-        Iterator<String> itrKeys = keys.iterator();// iterate over the collection of values of m1
-        while (itrValues.hasNext() && itrKeys.hasNext()) {
-            String keyM2 = itrValues.next(); // the values in m1 become keys in m2
-            String valueM2 = itrKeys.next(); // the keys in m1 become values in m2
-            if (!m2.containsKey(keyM2))
-                m2.put(keyM2, "[" + valueM2 + "]");
+    public static Map<String, Set<Integer>> reverse(Map<Integer, String> map) {
+        Map<String, Set<Integer>> reverseMap = new HashMap<String, Set<Integer>>();
+        for (int n : map.keySet()) {
+            String value = map.get(n);
+            if (reverseMap.containsKey(value))
+                reverseMap.get(value).add(n);
             else {
-                String value = m2.get(keyM2);
-                value = value.substring(0, value.length() - 1); // not take the close bracket
-                m2.put(keyM2, value + ", " + valueM2 + "]");
+                Set<Integer> list = new HashSet<Integer>();
+                list.add(n);
+                reverseMap.put(value, list);
             }
         }
-        return m2;
+        return reverseMap;
     }
 
     public static int rarest(Map<String, Integer> map1) {
