@@ -500,7 +500,7 @@ public class AdditionalExercises2 {
         Collection<Integer> values = map1.values();// put values of map1 into a collection
 
         // this is the map of the values and its number of occurrence
-        Map<Integer, Integer> map2 = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map2 = new TreeMap<Integer, Integer>();
         Iterator<Integer> i1 = values.iterator();
 
         // add keys/values into map 2
